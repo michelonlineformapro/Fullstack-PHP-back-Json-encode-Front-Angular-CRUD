@@ -1,0 +1,27 @@
+<h2 class="text-center text-info">Inscription</h2>
+<div class="row">
+  <div class="col-md-3">
+  </div>
+  <div class="col-md-6 col-md-offset-3">
+    <div class="jumbotron">
+      <form [formGroup]="angForm" (ngSubmit)="postdata(angForm)">
+
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" formControlName="email" autocomplete="off" class="form-control input-sm" placeholder="email@email.com">
+
+        </div>
+        <div class="form-group mt-3">
+          <label for="Password">Mot de passe</label>
+          <input type="password" id="Password" name="Password" formControlName="password"  autocomplete="off" class="form-control input-sm" placeholder="Mot de passe">
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3" [disabled]="!angForm.valid">Inscription</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-3">
+  </div>
+
+</div>

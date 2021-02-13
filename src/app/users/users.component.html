@@ -1,0 +1,68 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title has-text-warning">
+      LISTE DES MEMBRES DU SITE
+    </h1>
+    <table class="table table-striped is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Email</th>
+        <th>Mot de passe</th>
+        <th>Détails</th>
+        <th>Effacer</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!--Boucle sur le tableau vide userData de user.ts rempli par le json_encode de php-->
+      <tr *ngFor="let user of userData">
+        <!-- user de la boucle userData appel chaque element du json-->
+        <td>{{user.id}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.password}}</td>
+        <!-- la fonction (click) appel des fonction de user.ts comme onclick html-->
+        <td><button class="btn btn-outline-warning" (click)="getOneUser(user)">Mettre a jour</button> </td>
+        <td><button class="btn btn-outline-danger" (click)="deleteOneUser(user.id)">Supprimer</button> </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <h3 class="title has-text-danger">Pour mettre à jour un element :</h3>
+    <ul>
+      <li><em class="text-danger">1 - merci de cliquer sur le bouton mettre a jour de la ligne concernée</em></li>
+      <li><em class="text-danger">2 - modifier les valeurs des champs dans le formulaire</em></li>
+      <li><em class="text-danger">3 - Valider en cliquant sur le bouton : Ajouter un membres ou mettre a jour</em></li>
+    </ul>
+
+    <!-- alors #f capture ngSubmit donc pas action ni methode ?????-->
+    <form  #f = "ngForm">
+      <div class="form-group">
+        <div class="control">
+          <label for="email" class="label">Email</label>
+          <!-- selectedUser: UsersModel = {id: null, email: null, password: null} depuis le composant administration -->
+          <!-- puis on recup la valeur email-->
+          <input id="email" class="form-control" [(ngModel)]="userModel.email" name="email" type="email" placeholder="email@email.com">
+        </div>
+      </div>
+
+      <div class="form-group">
+
+        <div class="control">
+          <label for="password" class="label">Mot de passe</label>
+          <input class="form-control" id="password" [(ngModel)]="userModel.password" name="password" type="password" placeholder="motdepassesecret">
+        </div>
+      </div>
+    </form>
+
+    <div class="field mt-5">
+      <div class="control">
+        <input type="button" (click)="createOrUpdate(f)" class="btn btn-success" value="Ajouter un membres ou mettre a jour" />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
